@@ -92,7 +92,6 @@ const ScheduleList = () => {
 
   return (
     <Container>
-      <Typography variant='h4' component='h1' my={2}>時間割一覧</Typography>
       <Carousel
       navButtonsAlwaysVisible = {true}
       stopAutoPlayOnHover = {false}
