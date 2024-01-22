@@ -77,7 +77,6 @@ const ScheduleList = () => {
     return (
       <div onClick={handleClassInfoClick}>
         <div className="class-name-timetable">{classInfo.name}</div>
-        <div className="class-room">{classInfo.building} {classInfo.room_id}</div>
       </div>
     );
   };
