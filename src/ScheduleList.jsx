@@ -44,12 +44,12 @@ const ScheduleList = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const days = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日'];
   const timeSlots = {
-    '1時間目': '08:50~ 10:20',
-    '2時間目': '10:30~ 12:00',
-    '3時間目': '13:00~ 14:30',
-    '4時間目': '14:40~ 16:10',
-    '5時間目': '16:20~ 17:50',
-    '6時間目': '18:00~ 19:30'
+    '1時間目': '',
+    '2時間目': '',
+    '3時間目': '',
+    '4時間目': '',
+    '5時間目': '',
+    '6時間目': ''
   };
   const handleCellClick = async (day, period, classInfo) => {
     if (classInfo) {
