@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Modal from './Modal'; // モーダルコンポーネントのインポート
+// import Modal from './Modal'; // モーダルコンポーネントのインポート
 import ClassDetailsModal from './ClassDetailsModal'; // モーダルコンポーネントのインポート
 import './TimeTable.css';
 import './Modal.css';
@@ -13,7 +13,7 @@ import Card from '@mui/material/Card';
 import Carousel from 'react-material-ui-carousel';
 import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp';//左矢印アイコン
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';//右矢印アイコン
-
+import Alert from '@mui/material/Alert';
 
 const ScheduleList = () => {
   const [schedules, setSchedules] = useState([]);
@@ -77,8 +77,25 @@ const ScheduleList = () => {
     return (
       <div onClick={handleClassInfoClick}>
         <div className="class-name-timetable">{classInfo.name}</div>
-        <div className="class-room">{classInfo.building} {classInfo.room_id}</div>
+        {/*<div className="class-room">{classInfo.building} {classInfo.room_id}</div>*/}
       </div>
+    );
+  };
+  const shedulesCont = (shchedules) => {
+    if (!Array.isArray(schedules)) {
+      return '';
+    }
+    const len = schedules.length;
+    const department = query.get('department');
+    if (len == 0) {
+      return (
+        <Alert severity="warning">
+          {department}の時間割情報はまだありません。
+        </Alert>
+      )
+    }
+    return (
+      <Typography variant='h5'>{department}の先輩の時間割 全{len}件</Typography>
     );
   };
   const closeClassDetails = () => {
@@ -93,7 +110,7 @@ const ScheduleList = () => {
 
   return (
     <Container>
-      <Typography variant='h4' component='h1' my={2}>時間割一覧</Typography>
+      {shedulesCont(schedules)}
       <Carousel
       navButtonsAlwaysVisible = {true}
       stopAutoPlayOnHover = {false}
@@ -102,17 +119,10 @@ const ScheduleList = () => {
       >
       {schedules.map(schedule => (
         <Box key={schedule.id} className="TimeTable">
-          <Typography component='h2'>{schedule.department}の先輩の時間割</Typography>
           {/* 他のスケジュール情報も表示 */}
             <ClassDetailsModal
                 classInfo={selectedClass}
                 onClose={closeClassDetails}
-            />
-            <Modal
-                show={modalShow}
-                classes={currentClasses}
-                onSelect={handleClassSelect}
-                onClose={() => setModalShow(false)}
             />
           <table>
             <thead>
