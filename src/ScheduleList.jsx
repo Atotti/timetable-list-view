@@ -32,6 +32,7 @@ const ScheduleList = () => {
       try {
         const response = await axios.get(`https://ishiike.herokuapp.com/timetable/schedules/?department=${department}`);
         setSchedules(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error('データの取得に失敗しました', error);
       }
@@ -67,7 +68,12 @@ const ScheduleList = () => {
   
     const classInfo = classes.find(c => c.day === day && c.period === period);
     if (!classInfo) {
-      return '';
+      return (
+        <>
+          <br />
+          <br />
+        </>
+      );
     }
   
     const handleClassInfoClick = (e) => {
@@ -107,6 +113,17 @@ const ScheduleList = () => {
     // モーダルを閉じる
     setModalShow(false);
   };
+  const renderFreeMsg = (free_msg) => {
+    if (!free_msg) {
+      return '';
+    }
+    return (
+      <div className="ui raised segment">
+        <h4 className="ui header">投稿者のコメント</h4>
+        <p>{free_msg}</p>
+      </div>
+      );
+  };
 
   return (
     <Container>
@@ -144,6 +161,7 @@ const ScheduleList = () => {
             ))}
             </tbody>
           </table>
+          {renderFreeMsg(schedule.free_msg)}
         </Box>
       ))}
       </Carousel>
