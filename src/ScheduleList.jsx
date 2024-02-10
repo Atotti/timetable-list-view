@@ -14,6 +14,7 @@ import Carousel from 'react-material-ui-carousel';
 import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp';//左矢印アイコン
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';//右矢印アイコン
 import Alert from '@mui/material/Alert';
+import Paper from '@mui/material/Paper';
 
 const ScheduleList = () => {
   const [schedules, setSchedules] = useState([]);
@@ -118,11 +119,11 @@ const ScheduleList = () => {
       return '';
     }
     return (
-      <div className="ui raised segment">
-        <h4 className="ui header">投稿者のコメント</h4>
-        <p>{free_msg}</p>
-      </div>
-      );
+      <Paper elevation={0}>
+        投稿者のコメント:
+        {free_msg}
+      </Paper>
+    );
   };
 
   return (
