@@ -119,10 +119,10 @@ const ScheduleList = () => {
       return '';
     }
     return (
-      <Paper elevation={0}>
-        投稿者のコメント:
-        {free_msg}
-      </Paper>
+      <div className="ui raised segment">
+        <h4 className="ui header">投稿者のコメント</h4>
+        <p>{free_msg}</p>
+      </div>
     );
   };
 
