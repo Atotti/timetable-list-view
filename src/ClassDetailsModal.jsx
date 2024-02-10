@@ -15,7 +15,7 @@ const ClassDetailsModal = ({ classInfo, onClose, onDelete }) => {
           {/* モーダルの内容 */}
           <h2>{classInfo.name}</h2>
           <p>教員名: {classInfo.teacher}</p>
-          <p>教室: {classInfo.campus} {classInfo.building} {classInfo.room_id}</p>
+          <p>教室: (諸事情により非公開) </p>
           <p>{classInfo.year}年度 {classInfo.season} {classInfo.type}</p>
           <p>単位数: {classInfo.credits}</p>
           <p><a href={classInfo.url}>シラバス</a></p>

@@ -61,12 +61,12 @@ const ScheduleList = () => {
   const showClassDetails = (classInfo) => {
     setSelectedClass(classInfo);
   };
-  const renderSchedule = (classes, day, period) => {
+  const renderSchedule = (classes, day, period, term) => {
     if (!Array.isArray(schedules)) {
       return '';
     }
   
-    const classInfo = classes.find(c => c.day === day && c.period === period);
+    const classInfo = classes.find(c => c.day === day && c.period === period && c.season === term);
     if (!classInfo) {
       return (
         <>
@@ -141,6 +141,7 @@ const ScheduleList = () => {
                 classInfo={selectedClass}
                 onClose={closeClassDetails}
             />
+          <Typography >1年前期</Typography>
           <table>
             <thead>
             <tr>
@@ -154,13 +155,34 @@ const ScheduleList = () => {
                     <td>{`${period} ${time}`}</td>
                 {days.map(day => (
                     <td key={day} onClick={() => handleCellClick(day, period)}>
-                    {renderSchedule(schedule.classes, day, period)}
+                    {renderSchedule(schedule.classes, day, period, "前期")}
                     </td>
                 ))}
                 </tr>
             ))}
             </tbody>
           </table>
+          <Typography >1年後期</Typography>
+          <table>
+            <thead>
+            <tr>
+                <th>時間\曜日</th>
+                {days.map(day => <th key={day}>{day}</th>)}
+            </tr>
+            </thead>
+            <tbody>
+            {Object.entries(timeSlots).map(([period, time]) => (
+                <tr key={period}>
+                    <td>{`${period} ${time}`}</td>
+                {days.map(day => (
+                    <td key={day} onClick={() => handleCellClick(day, period)}>
+                    {renderSchedule(schedule.classes, day, period, "後期")}
+                    </td>
+                ))}
+                </tr>
+            ))}
+            </tbody>
+        </table>
           {renderFreeMsg(schedule.free_msg)}
         </Box>
       ))}
