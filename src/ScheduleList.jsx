@@ -67,7 +67,7 @@ const ScheduleList = () => {
       return '';
     }
   
-    const classInfo = classes.find(c => c.day === day && c.period === period && c.season === term);
+    const classInfo = classes.find(c => c.day === day && c.period === period && ( c.season === term || c.season === "通年"));
     if (!classInfo) {
       return (
         <>
