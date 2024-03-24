@@ -132,7 +132,7 @@ const ScheduleList = () => {
       <Carousel
       navButtonsAlwaysVisible = {true}
       stopAutoPlayOnHover = {false}
-      swipe = {true}
+      swipe = {false}
       interval = {10000000000000000} 
       >
       {schedules.map(schedule => (
